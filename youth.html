@@ -1,0 +1,1338 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YOUTH | Nova vies.</title>
+  <meta name="description" content="Nova vies. YOUTHは、中高生世代の育成と、部活動外でも継続して競技できる環境づくりを目指す次世代育成プロジェクトです。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0A0A0A;
+      --black-soft: #101010;
+      --surface: #171717;
+      --surface-2: #202020;
+      --gold: #D4AF37;
+      --gold-light: #F4E28D;
+      --gold-mid: #B8960C;
+      --gold-dark: #8B7200;
+      --white: #F7F4EA;
+      --text: #D8D8D8;
+      --muted: #8F8F8F;
+      --border: rgba(212,175,55,.22);
+      --container: 1120px;
+      --shadow-gold: 0 12px 40px rgba(212,175,55,.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: "Noto Sans JP", sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--container));
+      margin: 0 auto;
+    }
+
+    .font-heading {
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    .gold-gradient {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold-mid));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-label {
+      color: var(--gold-light);
+      font-size: 11px;
+      letter-spacing: .28em;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin-top: 10px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .gold-line {
+      width: 78px;
+      height: 1px;
+      margin: 26px 0 34px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    .section-copy {
+      color: var(--text);
+      max-width: 720px;
+      font-size: 15px;
+      line-height: 2.05;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    /* =========================
+       Navigation
+    ========================== */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(212,175,55,.12);
+      background: rgba(10,10,10,.88);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-inner {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold-mid));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    .nav-links a {
+      color: #aaa;
+      font-size: 11px;
+      letter-spacing: .16em;
+      transition: color .25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .menu-btn {
+      display: none;
+      background: transparent;
+      border: 0;
+      color: var(--gold-light);
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       Hero
+    ========================== */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 128px 0 80px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 75% 18%, rgba(212,175,55,.07), transparent 25%),
+        radial-gradient(ellipse at 50% 0%, #1B1B1B 0%, #0A0A0A 67%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .12;
+      background-image:
+        radial-gradient(circle at 20% 50%, var(--gold) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, var(--gold) 1px, transparent 1px);
+      background-size: 105px 105px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 130px;
+      background: linear-gradient(transparent, var(--black));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 880px;
+      text-align: center;
+    }
+
+    .hero-kicker {
+      color: var(--gold-light);
+      font-size: 12px;
+      letter-spacing: .34em;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(54px, 9vw, 108px);
+      font-weight: 300;
+      line-height: .92;
+      letter-spacing: -.02em;
+      background: linear-gradient(135deg, #fff9dd 5%, var(--gold-light) 42%, var(--gold) 75%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 70px rgba(212,175,55,.04);
+    }
+
+    .hero-copy {
+      margin-top: 34px;
+      color: #f0eee6;
+      font-size: clamp(18px, 2.4vw, 27px);
+      letter-spacing: .08em;
+      font-weight: 400;
+    }
+
+    .hero-sub {
+      margin: 17px auto 0;
+      max-width: 660px;
+      color: #999;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .hero-actions,
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 39px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 30px;
+      border: 1px solid rgba(212,175,55,.48);
+      border-radius: 3px;
+      color: var(--gold-light);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      transition: .25s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--gold-light);
+      background: rgba(212,175,55,.06);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #080808;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--gold), var(--gold-mid));
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      color: #080808;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      box-shadow: 0 10px 30px rgba(212,175,55,.18);
+    }
+
+    /* =========================
+       Sections
+    ========================== */
+    .section {
+      padding: 112px 0;
+      position: relative;
+    }
+
+    .section-dark {
+      background: var(--black-soft);
+    }
+
+    .section-center {
+      text-align: center;
+    }
+
+    .section-center .gold-line {
+      margin-left: auto;
+      margin-right: auto;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .section-center .section-copy {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* =========================
+       About
+    ========================== */
+    .about-intro {
+      max-width: 850px;
+    }
+
+    .about-intro .lead {
+      color: #e2e2e2;
+      font-size: 17px;
+      line-height: 2.05;
+      margin-bottom: 22px;
+    }
+
+    /* =========================
+       Activities
+    ========================== */
+    .activities-grid {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .activity-card {
+      position: relative;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      background: #131313;
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(244,226,141,.6);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .activity-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.9)),
+        radial-gradient(circle at 85% 15%, rgba(212,175,55,.12), transparent 28%);
+      z-index: 0;
+    }
+
+    .activity-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .activity-number {
+      color: var(--gold);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 14px;
+      letter-spacing: .12em;
+      margin-bottom: 7px;
+    }
+
+    .activity-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 31px;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+
+    .activity-card p {
+      color: #aaa;
+      font-size: 13px;
+      line-height: 1.8;
+      max-width: 360px;
+    }
+
+    .activity-link {
+      color: var(--gold-light);
+      font-size: 11px;
+      letter-spacing: .14em;
+      margin-top: 20px;
+    }
+
+    /* =========================
+       Stats
+    ========================== */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      background: #101010;
+    }
+
+    .stat {
+      min-height: 155px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      color: var(--gold-light);
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 12px;
+      color: #777;
+      font-size: 10px;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       Coaching
+    ========================== */
+    .split {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 74px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 11px;
+      color: var(--gold-light);
+      border: 1px solid var(--border);
+      font-size: 10px;
+      letter-spacing: .22em;
+    }
+
+    .coaching-photo {
+      position: relative;
+      min-height: 520px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background:
+        linear-gradient(145deg, #252525, #101010 65%);
+    }
+
+    .coaching-photo img {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+      filter: saturate(.7) contrast(1.07);
+    }
+
+    .coaching-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 70px rgba(0,0,0,.65);
+      pointer-events: none;
+    }
+
+    /* =========================
+       Three pillars
+    ========================== */
+    .three-grid {
+      margin-top: 46px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+
+    .simple-card {
+      padding: 32px 28px;
+      min-height: 230px;
+      border: 1px solid var(--border);
+      background: #121212;
+      transition: .25s ease;
+    }
+
+    .simple-card:hover {
+      border-color: rgba(244,226,141,.5);
+      transform: translateY(-3px);
+    }
+
+    .simple-card .tag {
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: .22em;
+    }
+
+    .simple-card h3 {
+      margin-top: 16px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 29px;
+      font-weight: 400;
+    }
+
+    .simple-card p {
+      margin-top: 14px;
+      color: #9c9c9c;
+      font-size: 13px;
+      line-height: 1.85;
+    }
+
+    /* =========================
+       CTA / Footer
+    ========================== */
+    .cta {
+      padding: 110px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(10,10,10,.8), rgba(10,10,10,.95)),
+        radial-gradient(circle at 50% 50%, rgba(212,175,55,.15), transparent 42%);
+      border-top: 1px solid rgba(212,175,55,.12);
+    }
+
+    .cta .section-title {
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer {
+      padding: 45px 0 34px;
+      border-top: 1px solid rgba(212,175,55,.1);
+      color: #666;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: end;
+    }
+
+    .footer .brand {
+      display: inline-block;
+      font-size: 25px;
+    }
+
+    .footer-note {
+      margin-top: 6px;
+      font-size: 10px;
+      letter-spacing: .1em;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 18px;
+    }
+
+    .footer-links a {
+      color: #777;
+      font-size: 10px;
+      letter-spacing: .12em;
+    }
+
+    .copyright {
+      margin-top: 26px;
+      font-size: 9px;
+      color: #555;
+    }
+
+    /* =========================
+       Animation
+    ========================== */
+    .fade {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       Responsive
+    ========================== */
+    @media (max-width: 900px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 74px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 20px 22px;
+        border-bottom: 1px solid var(--border);
+        background: rgba(10,10,10,.98);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 13px 4px;
+        border-bottom: 1px solid rgba(255,255,255,.05);
+      }
+
+      .activities-grid,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: 0;
+      }
+
+      .stat:nth-child(-n+2) {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .three-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .coaching-photo,
+      .coaching-photo img {
+        min-height: 390px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .footer-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .container {
+        width: min(calc(100% - 32px), var(--container));
+      }
+
+      .section {
+        padding: 84px 0;
+      }
+
+      .hero {
+        min-height: 92svh;
+        padding-top: 112px;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+      }
+
+      .hero-copy {
+        font-size: 17px;
+      }
+
+      .hero-sub {
+        font-size: 12px;
+      }
+
+      .hero-actions,
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .activities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .activity-card {
+        min-height: 260px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat,
+      .stat:nth-child(2) {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      .section-title {
+        font-size: 39px;
+      }
+    }
+  </style>
+  
+<style>
+  .page-hero {
+    min-height: 76svh;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    padding: 150px 0 92px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 78% 18%, rgba(212,175,55,.10), transparent 25%),
+      radial-gradient(ellipse at 50% 0%, #1B1B1B 0%, #0A0A0A 70%);
+  }
+
+  .page-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: .10;
+    background-image:
+      radial-gradient(circle at 20% 50%, var(--gold) 1px, transparent 1px),
+      radial-gradient(circle at 80% 20%, var(--gold) 1px, transparent 1px);
+    background-size: 105px 105px;
+  }
+
+  .page-hero-inner { position: relative; z-index: 2; }
+
+  .page-hero h1 {
+    margin-top: 12px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(58px, 9vw, 108px);
+    font-weight: 300;
+    line-height: .92;
+  }
+
+  .page-hero-copy {
+    margin-top: 26px;
+    max-width: 800px;
+    color: #d8d8d8;
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.85;
+  }
+
+  .vision-grid,
+  .program-grid,
+  .feature-grid,
+  .flow-grid {
+    margin-top: 46px;
+    display: grid;
+    gap: 18px;
+  }
+
+  .vision-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .vision-card,
+  .program-card,
+  .feature-card,
+  .flow-card {
+    border: 1px solid var(--border);
+    background: #121212;
+  }
+
+  .vision-card {
+    min-height: 230px;
+    padding: 28px 24px;
+  }
+
+  .vision-card .num,
+  .program-card .num,
+  .feature-card .num,
+  .flow-card .num {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: .18em;
+  }
+
+  .vision-card h3,
+  .program-card h3,
+  .feature-card h3,
+  .flow-card h3 {
+    margin-top: 15px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 29px;
+    font-weight: 400;
+  }
+
+  .vision-card p,
+  .program-card p,
+  .feature-card p,
+  .flow-card p {
+    margin-top: 12px;
+    color: #969696;
+    font-size: 12px;
+    line-height: 1.85;
+  }
+
+  .concept-split {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 70px;
+    align-items: start;
+  }
+
+  .concept-keyword {
+    padding: 28px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .concept-keyword:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .concept-keyword strong {
+    display: block;
+    color: var(--gold-light);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 39px;
+    font-weight: 400;
+  }
+
+  .concept-keyword span {
+    display: block;
+    margin-top: 8px;
+    color: #777;
+    font-size: 11px;
+    letter-spacing: .10em;
+  }
+
+  .program-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .program-card {
+    min-height: 245px;
+    padding: 30px 26px;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .feature-card {
+    min-height: 220px;
+    padding: 28px 24px;
+  }
+
+  .status-panel {
+    margin-top: 44px;
+    padding: 34px;
+    border: 1px solid rgba(244,226,141,.42);
+    background:
+      linear-gradient(145deg, rgba(212,175,55,.05), rgba(255,255,255,.01)),
+      #101010;
+  }
+
+  .status-label {
+    color: var(--gold-light);
+    font-size: 10px;
+    letter-spacing: .20em;
+  }
+
+  .status-title {
+    margin-top: 12px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 34px;
+    font-weight: 400;
+  }
+
+  .status-copy {
+    margin-top: 14px;
+    color: #9b9b9b;
+    max-width: 760px;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .flow-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .flow-card {
+    min-height: 190px;
+    padding: 26px 22px;
+  }
+
+  .partner-note {
+    margin-top: 40px;
+    padding: 26px;
+    border-left: 2px solid var(--gold-dark);
+    background: rgba(255,255,255,.015);
+  }
+
+  .partner-note p {
+    color: #9d9d9d;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  @media (max-width: 1000px) {
+    .vision-grid,
+    .feature-grid,
+    .flow-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .program-grid,
+    .concept-split {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .page-hero {
+      min-height: 64svh;
+      padding: 125px 0 72px;
+    }
+
+    .page-hero h1 {
+      font-size: 60px;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">Nova vies.</a>
+      <button class="menu-btn" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
+
+      <div class="nav-links">
+        <a href="about.html">ABOUT</a>
+        <a href="team.html">TEAM</a>
+        <a href="coaching.html">COACHING</a>
+        <a href="youth.html" style="color:var(--gold-light)">YOUTH</a>
+        <a href="event.html">EVENT</a>
+        <a href="partner.html">PARTNER</a>
+        <a href="contact.html">CONTACT</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="container page-hero-inner">
+      <p class="section-label">NOVA VIES. YOUTH</p>
+      <h1 class="gold-gradient">Build the<br>next generation.</h1>
+      <p class="page-hero-copy">
+        次の世代が、挑戦を続けられる環境を。<br>
+        競技力だけではなく、卓球を続けられる仕組みそのものをつくる。
+      </p>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section fade">
+      <div class="container">
+        <p class="section-label">MISSION</p>
+        <h2 class="section-title gold-gradient">
+          卓球を続けたい選手に、<br>
+          次の選択肢を。
+        </h2>
+        <div class="gold-line"></div>
+
+        <p class="section-copy">
+          Nova vies. YOUTHは、中高生世代を中心とした次世代育成プロジェクトです。<br><br>
+          学校部活動だけに競技環境を依存せず、
+          地域の中で継続的に練習・指導・競技機会へアクセスできる環境をつくることを目指します。<br><br>
+          「もっと上手くなりたい」
+          「学校以外でも練習したい」
+          「競技を続けたい」。
+          そんな選手の挑戦を、地域全体で支えられる仕組みへ。
+        </p>
+
+        <div class="vision-grid">
+          <div class="vision-card">
+            <span class="num">01 / DEVELOPMENT</span>
+            <h3>育成</h3>
+            <p>
+              技術・戦術・試合力を高めるだけでなく、
+              自分で考えて成長できる選手を育てる。
+            </p>
+          </div>
+
+          <div class="vision-card">
+            <span class="num">02 / CONTINUITY</span>
+            <h3>継続</h3>
+            <p>
+              学校や所属環境が変わっても、
+              卓球を続けられる選択肢を地域に残す。
+            </p>
+          </div>
+
+          <div class="vision-card">
+            <span class="num">03 / CONNECTION</span>
+            <h3>接続</h3>
+            <p>
+              学校、地域、指導者、チームをつなぎ、
+              選手が次のステージへ進める導線をつくる。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark fade">
+      <div class="container concept-split">
+
+        <div>
+          <div class="concept-keyword">
+            <strong>Youth</strong>
+            <span>次世代育成</span>
+          </div>
+
+          <div class="concept-keyword">
+            <strong>Community</strong>
+            <span>地域との連携</span>
+          </div>
+
+          <div class="concept-keyword">
+            <strong>Pathway</strong>
+            <span>競技継続への導線</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="section-label">CONCEPT</p>
+          <h2 class="section-title gold-gradient">
+            育成を、<br>
+            「その場限り」にしない。
+          </h2>
+          <div class="gold-line"></div>
+
+          <p class="section-copy">
+            Nova vies. YOUTHが目指すのは、単発の技術指導だけではありません。<br><br>
+            日常の練習、個別課題の改善、試合経験、進路や所属環境の変化まで含めて、
+            選手が長期的に卓球を続けられる環境を設計していきます。<br><br>
+            個人レッスンで見つけた課題を日常練習へつなげ、
+            試合で検証し、その結果を次の育成へ戻す。
+            「指導」と「競技環境」を分離せず、一つの成長サイクルとして扱うことを重視します。
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section fade">
+      <div class="container">
+        <p class="section-label">PROGRAM</p>
+        <h2 class="section-title gold-gradient">
+          選手の成長を、<br>
+          複数の接点から支える。
+        </h2>
+        <div class="gold-line"></div>
+
+        <div class="program-grid">
+          <div class="program-card">
+            <span class="num">01 / TRAINING</span>
+            <h3>Regular Training</h3>
+            <p>
+              継続的な練習環境を整え、技術・戦術・ゲーム理解を高める。
+              個人の課題に応じた練習テーマも設定します。
+            </p>
+          </div>
+
+          <div class="program-card">
+            <span class="num">02 / COACHING</span>
+            <h3>Individual Support</h3>
+            <p>
+              Nova vies. COACHINGと連携し、
+              一人ひとりの課題をより細かく分析・改善できる環境へつなげます。
+            </p>
+          </div>
+
+          <div class="program-card">
+            <span class="num">03 / MATCH</span>
+            <h3>Match Experience</h3>
+            <p>
+              練習だけで終わらせず、
+              練習試合・大会・イベントを通じて実戦経験を積む機会をつくります。
+            </p>
+          </div>
+
+          <div class="program-card">
+            <span class="num">04 / PATHWAY</span>
+            <h3>Next Stage</h3>
+            <p>
+              高校・大学・一般カテゴリーへ進んだ後も、
+              Nova vies. TEAMや地域の競技環境へ接続できる形を目指します。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark fade">
+      <div class="container">
+        <p class="section-label">WHY NOVA VIES. YOUTH</p>
+        <h2 class="section-title gold-gradient">
+          学校の外にも、<br>
+          成長できる場所を。
+        </h2>
+        <div class="gold-line"></div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="num">01</span>
+            <h3>Individual</h3>
+            <p>
+              全体練習だけでは拾いにくい個別課題を、
+              技術・戦術の両面から整理します。
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <span class="num">02</span>
+            <h3>Competitive</h3>
+            <p>
+              単なる卓球教室ではなく、
+              大会で勝つこと・競技力を高めることを前提とした育成を行います。
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <span class="num">03</span>
+            <h3>Connected</h3>
+            <p>
+              Nova vies. TEAM・COACHING・EVENTと連携し、
+              練習から実戦まで切れない育成環境を目指します。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade">
+      <div class="container">
+        <p class="section-label">PROJECT STATUS</p>
+        <h2 class="section-title gold-gradient">
+          Nova vies. Youth Project
+        </h2>
+        <div class="gold-line"></div>
+
+        <div class="status-panel">
+          <p class="status-label">PROJECT IN DEVELOPMENT</p>
+          <h3 class="status-title">現在、事業設計・連携体制を構築中です。</h3>
+          <p class="status-copy">
+            活動内容、対象年代、開催頻度、参加方法などの詳細は今後順次公開予定です。
+            学校・地域・指導者・競技団体など、次世代育成に関わる皆さまとの連携も視野に入れています。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark fade">
+      <div class="container">
+        <p class="section-label">FUTURE FLOW</p>
+        <h2 class="section-title gold-gradient">
+          一人の選手を、<br>
+          長期で支える。
+        </h2>
+        <div class="gold-line"></div>
+
+        <div class="flow-grid">
+          <div class="flow-card">
+            <span class="num">STEP 01</span>
+            <h3>Join</h3>
+            <p>地域の練習環境・個人指導からNova vies.と接点を持つ。</p>
+          </div>
+
+          <div class="flow-card">
+            <span class="num">STEP 02</span>
+            <h3>Develop</h3>
+            <p>継続練習と個別指導で、競技課題を改善する。</p>
+          </div>
+
+          <div class="flow-card">
+            <span class="num">STEP 03</span>
+            <h3>Compete</h3>
+            <p>大会・練習試合・イベントで実戦経験を積む。</p>
+          </div>
+
+          <div class="flow-card">
+            <span class="num">STEP 04</span>
+            <h3>Next</h3>
+            <p>高校・大学・一般カテゴリーへ進んだ後も競技継続へつなげる。</p>
+          </div>
+        </div>
+
+        <div class="partner-note">
+          <p>
+            学校・教育機関・地域団体・競技関係者の皆さまからの、
+            育成環境づくりや部活動地域展開に関するご相談も受け付けています。
+          </p>
+        </div>
+
+        <div class="actions" style="justify-content:flex-start;">
+          <a class="btn" href="partner.html">PARTNERSHIP</a>
+          <a class="btn" href="contact.html">CONTACT</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta fade">
+      <div class="container">
+        <p class="section-label">NEXT GENERATION</p>
+
+        <h2 class="section-title gold-gradient">
+          次の世代に、<br>
+          次の選択肢を。
+        </h2>
+
+        <p class="section-copy" style="margin-top:25px;">
+          Nova vies. YOUTHの活動情報や募集については、
+          今後公式サイト・SNS等で順次お知らせします。
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="contact.html">CONTACT</a>
+          <a class="btn" href="index.html">BACK TO HOME</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html">Nova vies.</a>
+          <p class="footer-note">Sports brand operated by Élt</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="about.html">ABOUT</a>
+          <a href="team.html">TEAM</a>
+          <a href="coaching.html">COACHING</a>
+          <a href="youth.html">YOUTH</a>
+          <a href="event.html">EVENT</a>
+          <a href="partner.html">PARTNER</a>
+          <a href="contact.html">CONTACT</a>
+        </div>
+      </div>
+
+      <p class="copyright">© 2024–2026 Élt / Nova vies. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuButton = document.querySelector(".menu-btn");
+      const navLinks = document.querySelector(".nav-links");
+
+      if (menuButton && navLinks) {
+        menuButton.addEventListener("click", () => {
+          const isOpen = navLinks.classList.toggle("open");
+          menuButton.setAttribute("aria-expanded", String(isOpen));
+          menuButton.textContent = isOpen ? "×" : "☰";
+        });
+
+        navLinks.querySelectorAll("a").forEach(link => {
+          link.addEventListener("click", () => {
+            navLinks.classList.remove("open");
+            menuButton.setAttribute("aria-expanded", "false");
+            menuButton.textContent = "☰";
+          });
+        });
+      }
+
+      const targets = document.querySelectorAll(".fade");
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08 });
+
+        targets.forEach(target => observer.observe(target));
+      } else {
+        targets.forEach(target => target.classList.add("show"));
+      }
+    });
+  </script>
+
+</body>
+</html>
