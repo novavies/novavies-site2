@@ -1,0 +1,981 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PARTNER | Nova vies.</title>
+<meta name="description" content="Nova vies. PARTNER。スポンサー、学校、地域、施設、企業との連携を通じて、卓球の新しい価値と次世代の競技環境を共につくります。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+      --black: #0A0A0A;
+      --black-soft: #101010;
+      --surface: #171717;
+      --surface-2: #202020;
+      --gold: #D4AF37;
+      --gold-light: #F4E28D;
+      --gold-mid: #B8960C;
+      --gold-dark: #8B7200;
+      --white: #F7F4EA;
+      --text: #D8D8D8;
+      --muted: #8F8F8F;
+      --border: rgba(212,175,55,.22);
+      --container: 1120px;
+      --shadow-gold: 0 12px 40px rgba(212,175,55,.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: "Noto Sans JP", sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--container));
+      margin: 0 auto;
+    }
+
+    .font-heading {
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    .gold-gradient {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold-mid));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-label {
+      color: var(--gold-light);
+      font-size: 11px;
+      letter-spacing: .28em;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin-top: 10px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .gold-line {
+      width: 78px;
+      height: 1px;
+      margin: 26px 0 34px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    .section-copy {
+      color: var(--text);
+      max-width: 720px;
+      font-size: 15px;
+      line-height: 2.05;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    /* =========================
+       Navigation
+    ========================== */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(212,175,55,.12);
+      background: rgba(10,10,10,.88);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-inner {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold-mid));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    .nav-links a {
+      color: #aaa;
+      font-size: 11px;
+      letter-spacing: .16em;
+      transition: color .25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .menu-btn {
+      display: none;
+      background: transparent;
+      border: 0;
+      color: var(--gold-light);
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       Hero
+    ========================== */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 128px 0 80px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 75% 18%, rgba(212,175,55,.07), transparent 25%),
+        radial-gradient(ellipse at 50% 0%, #1B1B1B 0%, #0A0A0A 67%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .12;
+      background-image:
+        radial-gradient(circle at 20% 50%, var(--gold) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, var(--gold) 1px, transparent 1px);
+      background-size: 105px 105px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 130px;
+      background: linear-gradient(transparent, var(--black));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 880px;
+      text-align: center;
+    }
+
+    .hero-kicker {
+      color: var(--gold-light);
+      font-size: 12px;
+      letter-spacing: .34em;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(54px, 9vw, 108px);
+      font-weight: 300;
+      line-height: .92;
+      letter-spacing: -.02em;
+      background: linear-gradient(135deg, #fff9dd 5%, var(--gold-light) 42%, var(--gold) 75%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 70px rgba(212,175,55,.04);
+    }
+
+    .hero-copy {
+      margin-top: 34px;
+      color: #f0eee6;
+      font-size: clamp(18px, 2.4vw, 27px);
+      letter-spacing: .08em;
+      font-weight: 400;
+    }
+
+    .hero-sub {
+      margin: 17px auto 0;
+      max-width: 660px;
+      color: #999;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .hero-actions,
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 39px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 30px;
+      border: 1px solid rgba(212,175,55,.48);
+      border-radius: 3px;
+      color: var(--gold-light);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      transition: .25s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--gold-light);
+      background: rgba(212,175,55,.06);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #080808;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--gold), var(--gold-mid));
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      color: #080808;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      box-shadow: 0 10px 30px rgba(212,175,55,.18);
+    }
+
+    /* =========================
+       Sections
+    ========================== */
+    .section {
+      padding: 112px 0;
+      position: relative;
+    }
+
+    .section-dark {
+      background: var(--black-soft);
+    }
+
+    .section-center {
+      text-align: center;
+    }
+
+    .section-center .gold-line {
+      margin-left: auto;
+      margin-right: auto;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .section-center .section-copy {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* =========================
+       About
+    ========================== */
+    .about-intro {
+      max-width: 850px;
+    }
+
+    .about-intro .lead {
+      color: #e2e2e2;
+      font-size: 17px;
+      line-height: 2.05;
+      margin-bottom: 22px;
+    }
+
+    /* =========================
+       Activities
+    ========================== */
+    .activities-grid {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .activity-card {
+      position: relative;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      background: #131313;
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(244,226,141,.6);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .activity-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.9)),
+        radial-gradient(circle at 85% 15%, rgba(212,175,55,.12), transparent 28%);
+      z-index: 0;
+    }
+
+    .activity-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .activity-number {
+      color: var(--gold);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 14px;
+      letter-spacing: .12em;
+      margin-bottom: 7px;
+    }
+
+    .activity-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 31px;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+
+    .activity-card p {
+      color: #aaa;
+      font-size: 13px;
+      line-height: 1.8;
+      max-width: 360px;
+    }
+
+    .activity-link {
+      color: var(--gold-light);
+      font-size: 11px;
+      letter-spacing: .14em;
+      margin-top: 20px;
+    }
+
+    /* =========================
+       Stats
+    ========================== */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      background: #101010;
+    }
+
+    .stat {
+      min-height: 155px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      color: var(--gold-light);
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 12px;
+      color: #777;
+      font-size: 10px;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       Coaching
+    ========================== */
+    .split {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 74px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 11px;
+      color: var(--gold-light);
+      border: 1px solid var(--border);
+      font-size: 10px;
+      letter-spacing: .22em;
+    }
+
+    .coaching-photo {
+      position: relative;
+      min-height: 520px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background:
+        linear-gradient(145deg, #252525, #101010 65%);
+    }
+
+    .coaching-photo img {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+      filter: saturate(.7) contrast(1.07);
+    }
+
+    .coaching-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 70px rgba(0,0,0,.65);
+      pointer-events: none;
+    }
+
+    /* =========================
+       Three pillars
+    ========================== */
+    .three-grid {
+      margin-top: 46px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+
+    .simple-card {
+      padding: 32px 28px;
+      min-height: 230px;
+      border: 1px solid var(--border);
+      background: #121212;
+      transition: .25s ease;
+    }
+
+    .simple-card:hover {
+      border-color: rgba(244,226,141,.5);
+      transform: translateY(-3px);
+    }
+
+    .simple-card .tag {
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: .22em;
+    }
+
+    .simple-card h3 {
+      margin-top: 16px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 29px;
+      font-weight: 400;
+    }
+
+    .simple-card p {
+      margin-top: 14px;
+      color: #9c9c9c;
+      font-size: 13px;
+      line-height: 1.85;
+    }
+
+    /* =========================
+       CTA / Footer
+    ========================== */
+    .cta {
+      padding: 110px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(10,10,10,.8), rgba(10,10,10,.95)),
+        radial-gradient(circle at 50% 50%, rgba(212,175,55,.15), transparent 42%);
+      border-top: 1px solid rgba(212,175,55,.12);
+    }
+
+    .cta .section-title {
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer {
+      padding: 45px 0 34px;
+      border-top: 1px solid rgba(212,175,55,.1);
+      color: #666;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: end;
+    }
+
+    .footer .brand {
+      display: inline-block;
+      font-size: 25px;
+    }
+
+    .footer-note {
+      margin-top: 6px;
+      font-size: 10px;
+      letter-spacing: .1em;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 18px;
+    }
+
+    .footer-links a {
+      color: #777;
+      font-size: 10px;
+      letter-spacing: .12em;
+    }
+
+    .copyright {
+      margin-top: 26px;
+      font-size: 9px;
+      color: #555;
+    }
+
+    /* =========================
+       Animation
+    ========================== */
+    .fade {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       Responsive
+    ========================== */
+    @media (max-width: 900px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 74px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 20px 22px;
+        border-bottom: 1px solid var(--border);
+        background: rgba(10,10,10,.98);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 13px 4px;
+        border-bottom: 1px solid rgba(255,255,255,.05);
+      }
+
+      .activities-grid,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: 0;
+      }
+
+      .stat:nth-child(-n+2) {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .three-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .coaching-photo,
+      .coaching-photo img {
+        min-height: 390px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .footer-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .container {
+        width: min(calc(100% - 32px), var(--container));
+      }
+
+      .section {
+        padding: 84px 0;
+      }
+
+      .hero {
+        min-height: 92svh;
+        padding-top: 112px;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+      }
+
+      .hero-copy {
+        font-size: 17px;
+      }
+
+      .hero-sub {
+        font-size: 12px;
+      }
+
+      .hero-actions,
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .activities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .activity-card {
+        min-height: 260px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat,
+      .stat:nth-child(2) {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      .section-title {
+        font-size: 39px;
+      }
+    }
+  </style>
+
+<style>
+.page-hero{min-height:76svh;display:flex;align-items:flex-end;position:relative;padding:150px 0 92px;overflow:hidden;background:radial-gradient(circle at 78% 18%,rgba(212,175,55,.10),transparent 25%),radial-gradient(ellipse at 50% 0%,#1B1B1B 0%,#0A0A0A 70%)}
+.page-hero::before{content:"";position:absolute;inset:0;opacity:.10;background-image:radial-gradient(circle at 20% 50%,var(--gold) 1px,transparent 1px),radial-gradient(circle at 80% 20%,var(--gold) 1px,transparent 1px);background-size:105px 105px}
+.page-hero-inner{position:relative;z-index:2}
+.page-hero h1{margin-top:12px;font-family:"Cormorant Garamond",serif;font-size:clamp(58px,9vw,108px);font-weight:300;line-height:.92}
+.page-hero-copy{margin-top:26px;max-width:820px;color:#d8d8d8;font-size:clamp(18px,2vw,24px);line-height:1.85}
+.partner-grid,.value-grid,.collab-grid,.flow-grid{margin-top:46px;display:grid;gap:18px}
+.partner-grid{grid-template-columns:repeat(3,1fr)}
+.value-grid{grid-template-columns:repeat(3,1fr)}
+.collab-grid{grid-template-columns:repeat(3,1fr)}
+.flow-grid{grid-template-columns:repeat(4,1fr)}
+.card{border:1px solid var(--border);background:#121212;padding:29px 25px;min-height:230px}
+.card .tag,.flow-card .num{color:var(--gold);font-size:10px;letter-spacing:.18em}
+.card h3,.flow-card h3{margin-top:15px;font-family:"Cormorant Garamond",serif;font-size:29px;font-weight:400}
+.card p,.flow-card p{margin-top:12px;color:#969696;font-size:12px;line-height:1.88}
+.highlight{margin-top:44px;padding:36px;border:1px solid rgba(244,226,141,.42);background:linear-gradient(145deg,rgba(212,175,55,.05),rgba(255,255,255,.01)),#101010}
+.highlight h3{font-family:"Cormorant Garamond",serif;font-size:38px;font-weight:400}
+.highlight p{margin-top:14px;color:#9b9b9b;max-width:820px;font-size:13px;line-height:1.9}
+.flow-card{border:1px solid var(--border);background:#101010;min-height:190px;padding:26px 22px}
+.note{margin-top:38px;padding:27px;border-left:2px solid var(--gold-dark);background:rgba(255,255,255,.015)}
+.note p{color:#9d9d9d;font-size:13px;line-height:1.9}
+@media(max-width:1000px){.partner-grid,.value-grid,.collab-grid,.flow-grid{grid-template-columns:1fr}}
+@media(max-width:580px){.page-hero{min-height:64svh;padding:125px 0 72px}.page-hero h1{font-size:60px}.highlight{padding:26px 22px}}
+</style>
+
+</head>
+<body>
+
+<nav class="nav">
+<div class="container nav-inner">
+<a class="brand" href="index.html">Nova vies.</a>
+<button class="menu-btn" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
+<div class="nav-links">
+<a href="about.html">ABOUT</a><a href="team.html">TEAM</a><a href="coaching.html">COACHING</a>
+<a href="youth.html">YOUTH</a><a href="event.html">EVENT</a><a href="partner.html" style="color:var(--gold-light)">PARTNER</a>
+<a href="contact.html">CONTACT</a>
+</div>
+</div>
+</nav>
+
+<header class="page-hero">
+<div class="container page-hero-inner">
+<p class="section-label">NOVA VIES. PARTNER</p>
+<h1 class="gold-gradient">Create<br>together.</h1>
+<p class="page-hero-copy">
+卓球の未来を、共につくる。<br>
+スポンサー、学校、地域、施設、企業との連携から、新しい価値を生み出す。
+</p>
+</div>
+</header>
+
+<main>
+
+<section class="section fade">
+<div class="container">
+<p class="section-label">PARTNERSHIP</p>
+<h2 class="section-title gold-gradient">支援ではなく、<br>共創へ。</h2>
+<div class="gold-line"></div>
+<p class="section-copy">
+Nova vies.が目指すのは、ロゴを掲載して終わるだけの関係ではありません。<br><br>
+競技チーム、コーチング、Youth、イベントという複数の活動を通じて、
+企業・学校・地域の皆さまと一緒に、卓球を起点とした新しい接点や価値をつくることを目指しています。
+</p>
+
+<div class="partner-grid">
+<div class="card">
+<span class="tag">01 / SPONSOR</span>
+<h3>Corporate Partner</h3>
+<p>チーム活動・大会・育成事業への協賛を通じて、Nova vies.と継続的なパートナーシップを築きます。</p>
+</div>
+
+<div class="card">
+<span class="tag">02 / SCHOOL</span>
+<h3>Education Partner</h3>
+<p>学校・教育機関と連携し、外部指導、部活動地域展開、育成環境づくりなどを一緒に検討します。</p>
+</div>
+
+<div class="card">
+<span class="tag">03 / COMMUNITY</span>
+<h3>Local Partner</h3>
+<p>施設・自治体・地域団体と連携し、地域スポーツの接点や継続的な活動機会をつくります。</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section section-dark fade">
+<div class="container">
+<p class="section-label">VALUE FOR PARTNERS</p>
+<h2 class="section-title gold-gradient">Nova vies.と組むことで、<br>何が生まれるか。</h2>
+<div class="gold-line"></div>
+
+<div class="value-grid">
+<div class="card">
+<span class="tag">01 / BRAND</span>
+<h3>Brand Exposure</h3>
+<p>チーム活動、SNS、イベント、競技実績を通じて、スポーツ文脈で企業・サービスの認知機会をつくります。</p>
+</div>
+
+<div class="card">
+<span class="tag">02 / COMMUNITY</span>
+<h3>Local Connection</h3>
+<p>学生・社会人・保護者・学校・競技関係者など、地域の卓球コミュニティとの新しい接点を生み出します。</p>
+</div>
+
+<div class="card">
+<span class="tag">03 / SOCIAL VALUE</span>
+<h3>Next Generation</h3>
+<p>Youthや育成活動への連携を通じて、次世代の競技環境や地域スポーツの継続に関わることができます。</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section fade">
+<div class="container">
+<p class="section-label">COLLABORATION</p>
+<h2 class="section-title gold-gradient">連携の形は、<br>ひとつじゃない。</h2>
+<div class="gold-line"></div>
+
+<div class="collab-grid">
+<div class="card">
+<span class="tag">SPONSORSHIP</span>
+<h3>Sponsor</h3>
+<p>年間・大会単位・プロジェクト単位など、目的に合わせた協賛。</p>
+</div>
+
+<div class="card">
+<span class="tag">EVENT</span>
+<h3>Co-hosting</h3>
+<p>大会、交流会、講習会、地域イベントなどの共同開催。</p>
+</div>
+
+<div class="card">
+<span class="tag">EDUCATION</span>
+<h3>School Support</h3>
+<p>外部指導、練習会、部活動地域展開、選手育成に関する連携。</p>
+</div>
+
+<div class="card">
+<span class="tag">FACILITY</span>
+<h3>Venue Partner</h3>
+<p>練習会・大会・講習会における会場提供や運営協力。</p>
+</div>
+
+<div class="card">
+<span class="tag">PRODUCT</span>
+<h3>Product Collaboration</h3>
+<p>卓球用品・スポーツ関連サービスなどとの商品・サービス連携。</p>
+</div>
+
+<div class="card">
+<span class="tag">PROJECT</span>
+<h3>New Project</h3>
+<p>既存枠に収まらない共同企画も、目的から逆算して設計します。</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section section-dark fade">
+<div class="container">
+<p class="section-label">CURRENT PARTNER</p>
+<h2 class="section-title gold-gradient">Together with<br>our partners.</h2>
+<div class="gold-line"></div>
+
+<div class="highlight">
+<h3>卓球ラウンジ NOA</h3>
+<p>
+2026年2月より、Nova vies.は卓球ラウンジNOA様とスポンサー契約を締結しています。
+今後も競技活動・地域卓球・イベントなどを通じて、パートナーの皆さまと共に価値をつくっていきます。
+</p>
+</div>
+</div>
+</section>
+
+<section class="section fade">
+<div class="container">
+<p class="section-label">PARTNERSHIP FLOW</p>
+<h2 class="section-title gold-gradient">相談から、<br>実行まで。</h2>
+<div class="gold-line"></div>
+
+<div class="flow-grid">
+<div class="flow-card"><span class="num">STEP 01</span><h3>Contact</h3><p>協賛・連携・共同企画についてお問い合わせください。</p></div>
+<div class="flow-card"><span class="num">STEP 02</span><h3>Hearing</h3><p>目的、ターゲット、実施したい内容、期待する成果を整理します。</p></div>
+<div class="flow-card"><span class="num">STEP 03</span><h3>Design</h3><p>Nova vies.の活動と接続し、実施内容や露出・連携方法を設計します。</p></div>
+<div class="flow-card"><span class="num">STEP 04</span><h3>Action</h3><p>イベント・協賛・教育連携など、合意した形でプロジェクトを実行します。</p></div>
+</div>
+
+<div class="note">
+<p>
+スポンサー提案、学校との外部指導、部活動地域展開、イベント共同開催など、
+目的がまだ明確に固まっていない段階でもご相談いただけます。
+</p>
+</div>
+</div>
+</section>
+
+<section class="cta fade">
+<div class="container">
+<p class="section-label">BECOME A PARTNER</p>
+<h2 class="section-title gold-gradient">卓球から、<br>新しい価値を。</h2>
+<p class="section-copy" style="margin-top:25px;">
+Nova vies.との協賛・連携・共同企画について、お気軽にお問い合わせください。
+</p>
+<div class="actions">
+<a class="btn btn-primary" href="contact.html">PARTNERSHIP CONTACT</a>
+<a class="btn" href="index.html">BACK TO HOME</a>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="footer">
+<div class="container">
+<div class="footer-grid">
+<div><a class="brand" href="index.html">Nova vies.</a><p class="footer-note">Sports brand operated by Élt</p></div>
+<div class="footer-links">
+<a href="about.html">ABOUT</a><a href="team.html">TEAM</a><a href="coaching.html">COACHING</a>
+<a href="youth.html">YOUTH</a><a href="event.html">EVENT</a><a href="partner.html">PARTNER</a><a href="contact.html">CONTACT</a>
+</div>
+</div>
+<p class="copyright">© 2024–2026 Élt / Nova vies. All Rights Reserved.</p>
+</div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+const b=document.querySelector(".menu-btn"),n=document.querySelector(".nav-links");
+if(b&&n){b.addEventListener("click",()=>{const o=n.classList.toggle("open");b.setAttribute("aria-expanded",String(o));b.textContent=o?"×":"☰"});n.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{n.classList.remove("open");b.setAttribute("aria-expanded","false");b.textContent="☰"}))}
+const t=document.querySelectorAll(".fade");
+if("IntersectionObserver"in window){const o=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("show");o.unobserve(x.target)}}),{threshold:.08});t.forEach(x=>o.observe(x))}else t.forEach(x=>x.classList.add("show"));
+});
+</script>
+</body>
+</html>
