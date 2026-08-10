@@ -1,0 +1,1505 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COACHING | Nova vies.</title>
+  <meta name="description" content="Nova vies. COACHING。試合から課題を分析し、必要な技術・戦術を個別に設計する卓球レッスン。学生・一般向けの個人レッスン、グループレッスンに対応。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0A0A0A;
+      --black-soft: #101010;
+      --surface: #171717;
+      --surface-2: #202020;
+      --gold: #D4AF37;
+      --gold-light: #F4E28D;
+      --gold-mid: #B8960C;
+      --gold-dark: #8B7200;
+      --white: #F7F4EA;
+      --text: #D8D8D8;
+      --muted: #8F8F8F;
+      --border: rgba(212,175,55,.22);
+      --container: 1120px;
+      --shadow-gold: 0 12px 40px rgba(212,175,55,.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: "Noto Sans JP", sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--container));
+      margin: 0 auto;
+    }
+
+    .font-heading {
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    .gold-gradient {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold-mid));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-label {
+      color: var(--gold-light);
+      font-size: 11px;
+      letter-spacing: .28em;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin-top: 10px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .gold-line {
+      width: 78px;
+      height: 1px;
+      margin: 26px 0 34px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    .section-copy {
+      color: var(--text);
+      max-width: 720px;
+      font-size: 15px;
+      line-height: 2.05;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    /* =========================
+       Navigation
+    ========================== */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(212,175,55,.12);
+      background: rgba(10,10,10,.88);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-inner {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold-mid));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    .nav-links a {
+      color: #aaa;
+      font-size: 11px;
+      letter-spacing: .16em;
+      transition: color .25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .menu-btn {
+      display: none;
+      background: transparent;
+      border: 0;
+      color: var(--gold-light);
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       Hero
+    ========================== */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 128px 0 80px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 75% 18%, rgba(212,175,55,.07), transparent 25%),
+        radial-gradient(ellipse at 50% 0%, #1B1B1B 0%, #0A0A0A 67%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .12;
+      background-image:
+        radial-gradient(circle at 20% 50%, var(--gold) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, var(--gold) 1px, transparent 1px);
+      background-size: 105px 105px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 130px;
+      background: linear-gradient(transparent, var(--black));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 880px;
+      text-align: center;
+    }
+
+    .hero-kicker {
+      color: var(--gold-light);
+      font-size: 12px;
+      letter-spacing: .34em;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(54px, 9vw, 108px);
+      font-weight: 300;
+      line-height: .92;
+      letter-spacing: -.02em;
+      background: linear-gradient(135deg, #fff9dd 5%, var(--gold-light) 42%, var(--gold) 75%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 70px rgba(212,175,55,.04);
+    }
+
+    .hero-copy {
+      margin-top: 34px;
+      color: #f0eee6;
+      font-size: clamp(18px, 2.4vw, 27px);
+      letter-spacing: .08em;
+      font-weight: 400;
+    }
+
+    .hero-sub {
+      margin: 17px auto 0;
+      max-width: 660px;
+      color: #999;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .hero-actions,
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 39px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 30px;
+      border: 1px solid rgba(212,175,55,.48);
+      border-radius: 3px;
+      color: var(--gold-light);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      transition: .25s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--gold-light);
+      background: rgba(212,175,55,.06);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #080808;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--gold), var(--gold-mid));
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      color: #080808;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      box-shadow: 0 10px 30px rgba(212,175,55,.18);
+    }
+
+    /* =========================
+       Sections
+    ========================== */
+    .section {
+      padding: 112px 0;
+      position: relative;
+    }
+
+    .section-dark {
+      background: var(--black-soft);
+    }
+
+    .section-center {
+      text-align: center;
+    }
+
+    .section-center .gold-line {
+      margin-left: auto;
+      margin-right: auto;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .section-center .section-copy {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* =========================
+       About
+    ========================== */
+    .about-intro {
+      max-width: 850px;
+    }
+
+    .about-intro .lead {
+      color: #e2e2e2;
+      font-size: 17px;
+      line-height: 2.05;
+      margin-bottom: 22px;
+    }
+
+    /* =========================
+       Activities
+    ========================== */
+    .activities-grid {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .activity-card {
+      position: relative;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      background: #131313;
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(244,226,141,.6);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .activity-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.9)),
+        radial-gradient(circle at 85% 15%, rgba(212,175,55,.12), transparent 28%);
+      z-index: 0;
+    }
+
+    .activity-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .activity-number {
+      color: var(--gold);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 14px;
+      letter-spacing: .12em;
+      margin-bottom: 7px;
+    }
+
+    .activity-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 31px;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+
+    .activity-card p {
+      color: #aaa;
+      font-size: 13px;
+      line-height: 1.8;
+      max-width: 360px;
+    }
+
+    .activity-link {
+      color: var(--gold-light);
+      font-size: 11px;
+      letter-spacing: .14em;
+      margin-top: 20px;
+    }
+
+    /* =========================
+       Stats
+    ========================== */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      background: #101010;
+    }
+
+    .stat {
+      min-height: 155px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      color: var(--gold-light);
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 12px;
+      color: #777;
+      font-size: 10px;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       Coaching
+    ========================== */
+    .split {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 74px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 11px;
+      color: var(--gold-light);
+      border: 1px solid var(--border);
+      font-size: 10px;
+      letter-spacing: .22em;
+    }
+
+    .coaching-photo {
+      position: relative;
+      min-height: 520px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background:
+        linear-gradient(145deg, #252525, #101010 65%);
+    }
+
+    .coaching-photo img {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+      filter: saturate(.7) contrast(1.07);
+    }
+
+    .coaching-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 70px rgba(0,0,0,.65);
+      pointer-events: none;
+    }
+
+    /* =========================
+       Three pillars
+    ========================== */
+    .three-grid {
+      margin-top: 46px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+
+    .simple-card {
+      padding: 32px 28px;
+      min-height: 230px;
+      border: 1px solid var(--border);
+      background: #121212;
+      transition: .25s ease;
+    }
+
+    .simple-card:hover {
+      border-color: rgba(244,226,141,.5);
+      transform: translateY(-3px);
+    }
+
+    .simple-card .tag {
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: .22em;
+    }
+
+    .simple-card h3 {
+      margin-top: 16px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 29px;
+      font-weight: 400;
+    }
+
+    .simple-card p {
+      margin-top: 14px;
+      color: #9c9c9c;
+      font-size: 13px;
+      line-height: 1.85;
+    }
+
+    /* =========================
+       CTA / Footer
+    ========================== */
+    .cta {
+      padding: 110px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(10,10,10,.8), rgba(10,10,10,.95)),
+        radial-gradient(circle at 50% 50%, rgba(212,175,55,.15), transparent 42%);
+      border-top: 1px solid rgba(212,175,55,.12);
+    }
+
+    .cta .section-title {
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer {
+      padding: 45px 0 34px;
+      border-top: 1px solid rgba(212,175,55,.1);
+      color: #666;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: end;
+    }
+
+    .footer .brand {
+      display: inline-block;
+      font-size: 25px;
+    }
+
+    .footer-note {
+      margin-top: 6px;
+      font-size: 10px;
+      letter-spacing: .1em;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 18px;
+    }
+
+    .footer-links a {
+      color: #777;
+      font-size: 10px;
+      letter-spacing: .12em;
+    }
+
+    .copyright {
+      margin-top: 26px;
+      font-size: 9px;
+      color: #555;
+    }
+
+    /* =========================
+       Animation
+    ========================== */
+    .fade {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       Responsive
+    ========================== */
+    @media (max-width: 900px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 74px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 20px 22px;
+        border-bottom: 1px solid var(--border);
+        background: rgba(10,10,10,.98);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 13px 4px;
+        border-bottom: 1px solid rgba(255,255,255,.05);
+      }
+
+      .activities-grid,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: 0;
+      }
+
+      .stat:nth-child(-n+2) {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .three-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .coaching-photo,
+      .coaching-photo img {
+        min-height: 390px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .footer-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .container {
+        width: min(calc(100% - 32px), var(--container));
+      }
+
+      .section {
+        padding: 84px 0;
+      }
+
+      .hero {
+        min-height: 92svh;
+        padding-top: 112px;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+      }
+
+      .hero-copy {
+        font-size: 17px;
+      }
+
+      .hero-sub {
+        font-size: 12px;
+      }
+
+      .hero-actions,
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .activities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .activity-card {
+        min-height: 260px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat,
+      .stat:nth-child(2) {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      .section-title {
+        font-size: 39px;
+      }
+    }
+  </style>
+  
+<style>
+  .page-hero {
+    min-height: 76svh;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    padding: 150px 0 92px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 76% 18%, rgba(212,175,55,.10), transparent 25%),
+      radial-gradient(ellipse at 50% 0%, #1B1B1B 0%, #0A0A0A 70%);
+  }
+
+  .page-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: .1;
+    background-image:
+      radial-gradient(circle at 20% 50%, var(--gold) 1px, transparent 1px),
+      radial-gradient(circle at 80% 20%, var(--gold) 1px, transparent 1px);
+    background-size: 105px 105px;
+  }
+
+  .page-hero-inner { position: relative; z-index: 2; }
+
+  .page-hero h1 {
+    margin-top: 12px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(58px, 9vw, 108px);
+    font-weight: 300;
+    line-height: .92;
+  }
+
+  .page-hero-copy {
+    margin-top: 26px;
+    max-width: 780px;
+    color: #d8d8d8;
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.8;
+  }
+
+  .problem-grid,
+  .method-grid,
+  .lesson-grid,
+  .price-grid {
+    margin-top: 46px;
+    display: grid;
+    gap: 18px;
+  }
+
+  .problem-grid { grid-template-columns: repeat(4, 1fr); }
+  .method-grid { grid-template-columns: repeat(4, 1fr); }
+  .lesson-grid { grid-template-columns: repeat(3, 1fr); }
+  .price-grid { grid-template-columns: repeat(3, 1fr); }
+
+  .problem-card,
+  .method-card,
+  .lesson-card,
+  .price-card {
+    border: 1px solid var(--border);
+    background: #121212;
+  }
+
+  .problem-card {
+    min-height: 200px;
+    padding: 27px 24px;
+  }
+
+  .problem-card .num,
+  .method-card .num,
+  .lesson-card .num {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: .18em;
+  }
+
+  .problem-card p {
+    margin-top: 18px;
+    color: #d4d4d4;
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  .method-card {
+    min-height: 245px;
+    padding: 28px 24px;
+  }
+
+  .method-card h3,
+  .lesson-card h3 {
+    margin-top: 15px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 29px;
+    font-weight: 400;
+  }
+
+  .method-card p,
+  .lesson-card p {
+    margin-top: 12px;
+    color: #979797;
+    font-size: 12px;
+    line-height: 1.85;
+  }
+
+  .coach-wrap {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .coach-photo {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: linear-gradient(145deg, #252525, #101010);
+  }
+
+  .coach-photo img {
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(.75) contrast(1.06);
+  }
+
+  .coach-name {
+    margin-top: 8px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 39px;
+    font-weight: 400;
+  }
+
+  .coach-role {
+    margin-top: 5px;
+    color: var(--gold-light);
+    font-size: 11px;
+    letter-spacing: .14em;
+  }
+
+  .profile-list {
+    margin-top: 28px;
+    list-style: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .profile-list li {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 18px;
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(212,175,55,.12);
+    color: #a4a4a4;
+    font-size: 12px;
+  }
+
+  .profile-list .label {
+    color: var(--gold-light);
+    letter-spacing: .08em;
+  }
+
+  .lesson-card {
+    min-height: 235px;
+    padding: 28px 24px;
+  }
+
+  .price-card {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .price-card.featured {
+    border-color: rgba(244,226,141,.55);
+    box-shadow: 0 12px 36px rgba(212,175,55,.10);
+  }
+
+  .price-head {
+    padding: 26px 24px 20px;
+    border-bottom: 1px solid rgba(212,175,55,.13);
+  }
+
+  .price-label {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: .18em;
+  }
+
+  .price-title {
+    margin-top: 8px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 30px;
+    font-weight: 400;
+  }
+
+  .price-body {
+    padding: 24px;
+  }
+
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+
+  .price-row:last-child {
+    border-bottom: 0;
+  }
+
+  .price-type {
+    color: #999;
+    font-size: 12px;
+  }
+
+  .price-value {
+    color: var(--gold-light);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 26px;
+    white-space: nowrap;
+  }
+
+  .price-note {
+    margin-top: 14px;
+    color: #777;
+    font-size: 10px;
+    line-height: 1.8;
+  }
+
+  .flow {
+    margin-top: 44px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .flow-step {
+    min-height: 180px;
+    padding: 26px 22px;
+    border: 1px solid var(--border);
+    background: #101010;
+  }
+
+  .flow-step .step {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: .18em;
+  }
+
+  .flow-step h3 {
+    margin-top: 14px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 27px;
+    font-weight: 400;
+  }
+
+  .flow-step p {
+    margin-top: 10px;
+    color: #929292;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .faq {
+    margin-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-item {
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(212,175,55,.12);
+  }
+
+  .faq-q {
+    color: #e6e6e6;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .faq-a {
+    margin-top: 10px;
+    color: #929292;
+    font-size: 12px;
+    line-height: 1.9;
+  }
+
+  @media (max-width: 1000px) {
+    .problem-grid,
+    .method-grid,
+    .flow {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lesson-grid,
+    .price-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .coach-wrap {
+      grid-template-columns: 1fr;
+    }
+
+    .coach-photo {
+      max-width: 420px;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .page-hero {
+      min-height: 64svh;
+      padding: 125px 0 72px;
+    }
+
+    .page-hero h1 {
+      font-size: 60px;
+    }
+
+    .problem-grid,
+    .method-grid,
+    .flow {
+      grid-template-columns: 1fr;
+    }
+
+    .profile-list li {
+      grid-template-columns: 1fr;
+      gap: 3px;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">Nova vies.</a>
+      <button class="menu-btn" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
+      <div class="nav-links">
+        <a href="about.html">ABOUT</a>
+        <a href="team.html">TEAM</a>
+        <a href="coaching.html" style="color:var(--gold-light)">COACHING</a>
+        <a href="youth.html">YOUTH</a>
+        <a href="event.html">EVENT</a>
+        <a href="partner.html">PARTNER</a>
+        <a href="contact.html">CONTACT</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="container page-hero-inner">
+      <p class="section-label">NOVA VIES. COACHING</p>
+      <h1 class="gold-gradient">One more win.</h1>
+      <p class="page-hero-copy">
+        県大会で、あと1勝。<br>
+        試合から逆算して、あなたに必要な変化をつくる。
+      </p>
+
+      <div class="actions" style="justify-content:flex-start;">
+        <a class="btn btn-primary" href="https://lin.ee/nIVmhXB" target="_blank" rel="noopener noreferrer">
+          公式LINEから予約
+        </a>
+        <a class="btn" href="#price">料金を見る</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section fade">
+      <div class="container">
+        <p class="section-label">PROBLEM</p>
+        <h2 class="section-title gold-gradient">
+          練習量ではなく、<br>
+          「何を変えるか」が分からない。
+        </h2>
+        <div class="gold-line"></div>
+
+        <div class="problem-grid">
+          <div class="problem-card">
+            <span class="num">01</span>
+            <p>県大会に出ても、1〜2回戦で負けてしまう。</p>
+          </div>
+          <div class="problem-card">
+            <span class="num">02</span>
+            <p>何を改善すれば、次の1勝につながるのか分からない。</p>
+          </div>
+          <div class="problem-card">
+            <span class="num">03</span>
+            <p>部活では、一人ひとりを細かく見てもらえる時間が少ない。</p>
+          </div>
+          <div class="problem-card">
+            <span class="num">04</span>
+            <p>練習では入るのに、試合になると技術を出し切れない。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark fade">
+      <div class="container">
+        <p class="section-label">METHOD</p>
+        <h2 class="section-title gold-gradient">
+          技術を教える前に、<br>
+          試合の構造を読む。
+        </h2>
+        <div class="gold-line"></div>
+
+        <p class="section-copy">
+          Nova vies. COACHINGでは、単にフォームを修正するだけではなく、
+          試合で失点している原因を整理し、必要な技術・戦術を優先順位まで含めて設計します。
+        </p>
+
+        <div class="method-grid">
+          <div class="method-card">
+            <span class="num">01 / ANALYZE</span>
+            <h3>課題分析</h3>
+            <p>プレー、得失点、サービス・レシーブ、ラリー展開から勝敗を左右している要因を整理。</p>
+          </div>
+
+          <div class="method-card">
+            <span class="num">02 / DESIGN</span>
+            <h3>改善設計</h3>
+            <p>技術課題だけでなく、配球・打球点・コース選択まで含めて「何を変えるか」を決定。</p>
+          </div>
+
+          <div class="method-card">
+            <span class="num">03 / TRAIN</span>
+            <h3>個別練習</h3>
+            <p>必要な技術・戦術に練習を絞り、試合で再現できる形まで反復・調整。</p>
+          </div>
+
+          <div class="method-card">
+            <span class="num">04 / VERIFY</span>
+            <h3>試合で検証</h3>
+            <p>練習で終わらせず、次の大会・練習試合で検証し、次の改善課題へつなげます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade">
+      <div class="container coach-wrap">
+        <div>
+          <div class="coach-photo">
+            <img
+              src="IMG_7101.png"
+              alt="Nova vies. Coaching 坂本瑛希"
+              onerror="this.style.display='none';"
+            >
+          </div>
+        </div>
+
+        <div>
+          <p class="section-label">COACH</p>
+          <h2 class="coach-name">坂本 瑛希 <span style="font-size:17px;color:#777;">Haruki Sakamoto</span></h2>
+          <p class="coach-role">NOVA VIES. REPRESENTATIVE / COACH</p>
+
+          <ul class="profile-list">
+            <li><span class="label">STYLE</span><span>左利き / 攻撃型</span></li>
+            <li><span class="label">ACHIEVEMENT</span><span>全日本カデット出場 4回</span></li>
+            <li><span class="label">ACHIEVEMENT</span><span>東京選手権出場</span></li>
+            <li><span class="label">ACHIEVEMENT</span><span>東北学生ランカー 2回</span></li>
+            <li><span class="label">ACHIEVEMENT</span><span>東北学生会長杯 ベスト8</span></li>
+          </ul>
+
+          <p class="section-copy" style="margin-top:30px;">
+            レッスンでは、感覚だけでなく「なぜその技術が必要なのか」「試合のどこで使うのか」まで整理し、
+            選手自身が自分の課題を理解できる状態を目指します。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark fade">
+      <div class="container">
+        <p class="section-label">LESSON</p>
+        <h2 class="section-title gold-gradient">
+          目的に合わせて、<br>
+          指導形式を選べる。
+        </h2>
+        <div class="gold-line"></div>
+
+        <div class="lesson-grid">
+          <div class="lesson-card">
+            <span class="num">01 / PERSONAL</span>
+            <h3>Personal Lesson</h3>
+            <p>
+              1対1で課題を集中改善。技術・戦術・サービス・レシーブ・試合展開まで個別に対応します。
+            </p>
+          </div>
+
+          <div class="lesson-card">
+            <span class="num">02 / GROUP</span>
+            <h3>Group Lesson</h3>
+            <p>
+              複数名でのグループ指導。共通課題のトレーニングや実戦形式の練習にも対応します。
+            </p>
+          </div>
+
+          <div class="lesson-card">
+            <span class="num">03 / SCHOOL & TEAM</span>
+            <h3>External Coaching</h3>
+            <p>
+              学校・チームへの外部指導にも対応。全体練習設計、個別課題、試合帯同など内容をご相談いただけます。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="price" class="section fade">
+      <div class="container">
+        <p class="section-label">PRICE</p>
+        <h2 class="section-title gold-gradient">
+          Lesson Price.
+        </h2>
+        <div class="gold-line"></div>
+
+        <p class="section-copy">
+          単発利用から継続パックまで、目的と頻度に合わせてご利用いただけます。
+        </p>
+
+        <div class="price-grid">
+
+          <div class="price-card">
+            <div class="price-head">
+              <p class="price-label">SINGLE</p>
+              <h3 class="price-title">1 Hour</h3>
+            </div>
+            <div class="price-body">
+              <div class="price-row">
+                <span class="price-type">学生</span>
+                <span class="price-value">¥2,500</span>
+              </div>
+              <div class="price-row">
+                <span class="price-type">一般</span>
+                <span class="price-value">¥4,000</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="price-card featured">
+            <div class="price-head">
+              <p class="price-label">5 HOURS PACK</p>
+              <h3 class="price-title">5 Hours</h3>
+            </div>
+            <div class="price-body">
+              <div class="price-row">
+                <span class="price-type">学生</span>
+                <span class="price-value">¥10,000</span>
+              </div>
+              <div class="price-row">
+                <span class="price-type">一般</span>
+                <span class="price-value">¥18,000</span>
+              </div>
+              <p class="price-note">継続的に課題を改善したい方におすすめ。</p>
+            </div>
+          </div>
+
+          <div class="price-card">
+            <div class="price-head">
+              <p class="price-label">10 HOURS PACK</p>
+              <h3 class="price-title">10 Hours</h3>
+            </div>
+            <div class="price-body">
+              <div class="price-row">
+                <span class="price-type">学生</span>
+                <span class="price-value">¥20,000</span>
+              </div>
+              <div class="price-row">
+                <span class="price-type">一般</span>
+                <span class="price-value">¥35,000</span>
+              </div>
+              <p class="price-note">中長期で技術・戦術を改善したい方向け。</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="price-grid" style="margin-top:18px;">
+          <div class="price-card" style="grid-column:1 / -1;">
+            <div class="price-head">
+              <p class="price-label">GROUP LESSON</p>
+              <h3 class="price-title">2 Hours</h3>
+            </div>
+            <div class="price-body">
+              <div class="price-row">
+                <span class="price-type">学生グループ</span>
+                <span class="price-value">¥10,000</span>
+              </div>
+              <div class="price-row">
+                <span class="price-type">一般グループ</span>
+                <span class="price-value">¥13,000</span>
+              </div>
+              <p class="price-note">
+                会場費は別途となります。学校・チーム指導については内容・人数・時間に応じてご相談ください。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions" style="justify-content:flex-start;">
+          <a class="btn btn-primary" href="https://lin.ee/nIVmhXB" target="_blank" rel="noopener noreferrer">公式LINEから予約</a>
+          <a class="btn" href="contact.html">CONTACT</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark fade">
+      <div class="container">
+        <p class="section-label">HOW IT WORKS</p>
+        <h2 class="section-title gold-gradient">
+          予約からレッスンまで。
+        </h2>
+        <div class="gold-line"></div>
+
+        <div class="flow">
+          <div class="flow-step">
+            <span class="step">STEP 01</span>
+            <h3>LINE</h3>
+            <p>公式LINEから希望日時・対象・簡単な相談内容を送信。</p>
+          </div>
+
+          <div class="flow-step">
+            <span class="step">STEP 02</span>
+            <h3>Hearing</h3>
+            <p>現在のレベル、目標、大会予定、改善したい課題を確認。</p>
+          </div>
+
+          <div class="flow-step">
+            <span class="step">STEP 03</span>
+            <h3>Lesson</h3>
+            <p>現状を確認しながら、必要な技術・戦術へ優先順位をつけて指導。</p>
+          </div>
+
+          <div class="flow-step">
+            <span class="step">STEP 04</span>
+            <h3>Next</h3>
+            <p>改善点を整理し、次回までの練習課題・試合での検証ポイントを設定。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade">
+      <div class="container">
+        <p class="section-label">FAQ</p>
+        <h2 class="section-title gold-gradient">Frequently Asked Questions.</h2>
+        <div class="gold-line"></div>
+
+        <div class="faq">
+          <div class="faq-item">
+            <p class="faq-q">Q. 学生でも受けられますか？</p>
+            <p class="faq-a">はい。中高生・大学生を含む学生向け料金を設定しています。</p>
+          </div>
+
+          <div class="faq-item">
+            <p class="faq-q">Q. 単発でも利用できますか？</p>
+            <p class="faq-a">可能です。特定技術の改善、大会前の調整、試合課題の分析などにも利用できます。</p>
+          </div>
+
+          <div class="faq-item">
+            <p class="faq-q">Q. 会場費は料金に含まれますか？</p>
+            <p class="faq-a">会場費はレッスン料金とは別途となります。</p>
+          </div>
+
+          <div class="faq-item">
+            <p class="faq-q">Q. 学校やチームへの指導も可能ですか？</p>
+            <p class="faq-a">可能です。人数、時間、指導内容、試合帯同などに応じて個別にご相談ください。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta fade">
+      <div class="container">
+        <p class="section-label">BOOK A LESSON</p>
+        <h2 class="section-title gold-gradient">
+          次の1勝を、<br>
+          偶然にしない。
+        </h2>
+        <p class="section-copy" style="margin-top:25px;">
+          まずは現在の課題や目標を公式LINEからお送りください。
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="https://lin.ee/nIVmhXB" target="_blank" rel="noopener noreferrer">公式LINEから予約</a>
+          <a class="btn" href="index.html">BACK TO HOME</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html">Nova vies.</a>
+          <p class="footer-note">Sports brand operated by Élt</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="about.html">ABOUT</a>
+          <a href="team.html">TEAM</a>
+          <a href="coaching.html">COACHING</a>
+          <a href="youth.html">YOUTH</a>
+          <a href="event.html">EVENT</a>
+          <a href="partner.html">PARTNER</a>
+          <a href="contact.html">CONTACT</a>
+        </div>
+      </div>
+
+      <p class="copyright">© 2024–2026 Élt / Nova vies. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuButton = document.querySelector(".menu-btn");
+      const navLinks = document.querySelector(".nav-links");
+
+      if (menuButton && navLinks) {
+        menuButton.addEventListener("click", () => {
+          const isOpen = navLinks.classList.toggle("open");
+          menuButton.setAttribute("aria-expanded", String(isOpen));
+          menuButton.textContent = isOpen ? "×" : "☰";
+        });
+
+        navLinks.querySelectorAll("a").forEach(link => {
+          link.addEventListener("click", () => {
+            navLinks.classList.remove("open");
+            menuButton.setAttribute("aria-expanded", "false");
+            menuButton.textContent = "☰";
+          });
+        });
+      }
+
+      const targets = document.querySelectorAll(".fade");
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08 });
+
+        targets.forEach(target => observer.observe(target));
+      } else {
+        targets.forEach(target => target.classList.add("show"));
+      }
+    });
+  </script>
+
+</body>
+</html>
